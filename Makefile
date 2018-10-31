@@ -15,6 +15,9 @@ run_list: $(ODIR)
 
 run: run_list
 	$(BIN)/$<
+
 clean: 
 	rm -f $(BIN)/* $(OBJ)/*
 
+.PHONY:
+	tree

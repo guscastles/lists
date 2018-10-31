@@ -33,6 +33,11 @@ int main(void){
       }
 
       void no_element(List list, int position) {
-         printf("Element %d does not exist\n", element(list, position) == NULL);
+	 int elem[2];
+	 for (int i = 0; i < 2; ++i) {
+	    elem[i] = element(list, position + i);
+	    char *str = elem[i] == INT_MIN ? "does not exist in position\0" : "is in position\0";  
+	    printf("Element %d %s %d\n", elem[i], str, position + i);
+	 }
       }
 
