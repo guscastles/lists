@@ -1,7 +1,7 @@
 SRC=src
 OBJ=obj
 OBJ_FILES=list.o run_list.o
-HDR=headers
+HDR=hdr
 BIN=bin
 ODIR=$(patsubst %,$(OBJ)/%, $(OBJ_FILES))
 
