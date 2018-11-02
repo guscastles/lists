@@ -21,3 +21,6 @@ clean:
 
 .PHONY:
 	tree
+
+test_remove: tst/test_remove.c src/list.c
+	rm bin/$@; gcc -o $(BIN)/$@ $^ -I $(HDR)/;$(BIN)/$@

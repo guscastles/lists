@@ -1,6 +1,6 @@
 #include "run_list.h"
 
-int main(void){
+int _main(void){
    list_play();
    return 0;
 }
