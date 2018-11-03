@@ -2,24 +2,19 @@ SRC=src
 OBJ=obj
 TST=tst
 TST_OBJ=obj/tst
-OBJ_FILES=list.o run_list.o
+OBJ_FILES=list.o
 TST_OBJ_FILES=unittest.o test_list.o test_remove.o
 HDR=hdr
 BIN=bin
+LIB=lib
 ODIR=$(patsubst %,$(OBJ)/%, $(OBJ_FILES))
 TODIR=$(patsubst %,$(TST_OBJ)/%, $(TST_OBJ_FILES))
-DEST=$(HOME)/.local/bin
+DEST=$(HOME)/.local/$(LIB)
 
-all: clean run_list
+all: clean obj/list.o
 
 $(OBJ)/%.o: $(SRC)/%.c
 	gcc -c -o $@ $< -iquote $(HDR)/ 
-
-run_list: $(ODIR)
-	gcc -o $(BIN)/$@ $^
-
-run: run_list install
-	$<
 
 clean: 
 	rm -f $(BIN)/* $(OBJ)/*.o $(TST_OBJ)/*
@@ -37,9 +32,9 @@ unittest: $(TODIR) $(OBJ)/list.o
 run_tests: unittest
 	$(BIN)/$<
 
-install: run_list
-	cp $(BIN)/$< $(DEST)/
+install: $(OBJ)/$(OBJ_FILES)
+	cp $< $(DEST)/
 
-uninstall: run_list
+uninstall: obj/list.o
 	rm -f $(DEST)/$<
 
