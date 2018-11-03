@@ -20,6 +20,8 @@ void release_list(List list);
 
 List add_element(List list, int value);
 
+void append_element(List list, int value);
+
 List remove_element(List list, int position);
 
 Tuple pop(List list);

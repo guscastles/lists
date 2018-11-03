@@ -1,6 +1,6 @@
 #include "run_list.h"
 
-int _main(void){
+int main(void){
    list_play();
    return 0;
 }
@@ -17,7 +17,7 @@ int _main(void){
          printf("List size: %d\n", list_size(list));
          for (int i = 0; i < size; ++i) {
             update_list(list, i + 1, i);
-            printf("Element %d: %d\n", i, element(list, i));
+            printf("Element %d: %d\n", i, element_at(list, i));
          }
 
          return list;
@@ -27,7 +27,7 @@ int _main(void){
          List more_elements = list;
          for (long l = 0; l < 1e7; ++l)
             more_elements = add_element(more_elements, 77);
-         printf("List size: %d\nElement %0.f: %d\n", list_size(more_elements), 1e7, element(more_elements, 1e6));
+         printf("List size: %d\nElement %0.f: %d\n", list_size(more_elements), 1e7, element_at(more_elements, 1e6));
 
          return more_elements;
       }
@@ -35,7 +35,7 @@ int _main(void){
       void no_element(List list, int position) {
 	 int elem[2];
 	 for (int i = 0; i < 2; ++i) {
-	    elem[i] = element(list, position + i);
+	    elem[i] = element_at(list, position + i);
 	    char *str = elem[i] == INT_MIN ? "does not exist in position\0" : "is in position\0";  
 	    printf("Element %d %s %d\n", elem[i], str, position + i);
 	 }

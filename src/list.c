@@ -15,7 +15,7 @@ List create_list(int size) {
    List new_list;
    new_list.list = array;
    new_list.size = size;
-   
+
    return new_list;
 }
 
@@ -39,8 +39,16 @@ List add_element(List list, int element) {
       return list;
    list.list = realloc(list.list, (list.size + 1) * sizeof(int));
    list.list[list.size] = element;
-   list.size++;
+   ++list.size;
    return list;
+}
+
+void append_element(List list, int element) {
+   if (list.size < MAX_LIST_SIZE) {
+      list.list = realloc(list.list, (list.size + 1) * sizeof(int));
+      list.list[list.size] = element;
+      ++list.size;
+   }
 }
 
 void release_list(List list) {
@@ -54,7 +62,7 @@ List remove_element(List list, int position) {
    for (int i = 0, pos = 0; i < current_size; ++i)
       if (i != pos) {
          update_list(new_list, element_at(list, i), pos);
-         pos++;
+         ++pos;
       }
    release_list(list);
    return new_list;
@@ -74,5 +82,4 @@ Tuple pop(List list) {
    tuple.element = last_element;
    return tuple;
 }
-
 

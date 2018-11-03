@@ -8,3 +8,5 @@ List create_a_list(int size);
 
 List add_elements(List list);
 
+void no_element(List list, int position);
+
