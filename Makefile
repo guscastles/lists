@@ -13,7 +13,7 @@ DEST=$(HOME)/.local/bin
 all: clean run_list
 
 $(OBJ)/%.o: $(SRC)/%.c
-	gcc -c -o $@ $< -I $(HDR)/ 
+	gcc -c -o $@ $< -iquote $(HDR)/ 
 
 run_list: $(ODIR)
 	gcc -o $(BIN)/$@ $^
@@ -29,7 +29,7 @@ tree:
 	tree
 
 $(TST_OBJ)/%.o: $(TST)/%.c
-	gcc -g -c -o $@ $< -I $(HDR)/
+	gcc -g -c -o $@ $< -iquote $(HDR)/
 
 unittest: $(TODIR) $(OBJ)/list.o
 	gcc -o $(BIN)/$@ $^ -lcunit
