@@ -1,7 +1,7 @@
 #include <CUnit/CUnit.h>
 #include <CUnit/Basic.h>
 #include <string.h>
-#include "test_list.h"
+#include "unittest.h"
 
 #define SIZE(v) (sizeof(v) / sizeof(v[0]))
 
@@ -27,7 +27,7 @@ void runme(Test *tests, int size){
 }
 
 void gather_tests(void (*run)()) {
-   int size = 2;
+   int size = SIZE(names);
    Test tests[size];
    for (int i = 0; i < size; ++i) {
       strcpy(tests[i].name, names[i]);
