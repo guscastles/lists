@@ -39,6 +39,6 @@ run_tests: unittest
 static_lib: $(ODIR)
 	ar rcs $(OBJ)/liblist.a $^
 
-uninstall: liblist.a
-	rm -f $(DEST)/$<
+uninstall: clean 
+	rm -f $(DEST)/liblist.a
 

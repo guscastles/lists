@@ -23,17 +23,8 @@ int list_size(List list) {
    return list.size;
 }
 
-List add_element(List list, int element) {
-   if (list.size + 1 > MAX_LIST_SIZE)
-      return list;
-   list.list = realloc(list.list, (list.size + 1) * sizeof(int));
-   list.list[list.size] = element;
-   ++list.size;
-   return list;
-}
-
 List append_element(List list, int element) {
-   if (list.size < MAX_LIST_SIZE) {
+   if (list.size <= MAX_LIST_SIZE) {
       list.list = realloc(list.list, (list.size + 1) * sizeof(int));
       list.list[list.size] = element;
       ++list.size;

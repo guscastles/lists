@@ -3,7 +3,7 @@
 #include "list.h"
 
 Tuple pop_list(List list) {
-   List new_list = add_element(add_element(list, 4), 5);
+   List new_list = append_element(append_element(list, 4), 5);
    return pop(new_list);
 }
 
