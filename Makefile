@@ -1,37 +1,36 @@
 SRC=src
-OBJ=obj
+ODIR=obj
 LIB=lib
-TST=test
-TST_OBJ=$(OBJ)/$(TST)
-OBJ_FILES=list_creation.o list_removal.o list_transformation.o
-TST_OBJ_FILES=unittest.o test_list.o test_remove.o
+TDIR=test
 INC=include
 BIN=bin
 LIB=lib
+TODIR=$(ODIR)/test
+_OBJ=list_creation.o list_removal.o list_transformation.o
+_TOBJ=unittest.o test_list.o test_remove.o
 LD_LIBRARY_PATH=$(HOME)/.local/lib
-ODIR=$(patsubst %,$(OBJ)/%, $(OBJ_FILES))
-TODIR=$(patsubst %,$(TST_OBJ)/%, $(TST_OBJ_FILES))
-DEST=$(HOME)/.local/$(LIB)
-DEST_INC=$(HOME)/.local/$(INC)
+OBJ=$(patsubst %,$(ODIR)/%, $(_OBJ))
+TOBJ=$(patsubst %,$(TODIR)/%, $(_TOBJ))
+DEST=$(HOME)/.local
 
-all: clean $(ODIR)
+all: clean $(OBJ)
 
-$(OBJ)/%.o: $(SRC)/%.c
+$(ODIR)/%.o: $(SRC)/%.c
 	gcc $(DBG) -c -o $@ $< -iquote $(INC)/ 
 
 .PHONY: tree
 tree:
 	tree
 
-$(TST_OBJ)/%.o: $(TST)/%.c
+$(TODIR)/%.o: $(TDIR)/%.c
 	gcc $(DBG) -c -o $@ $< -iquote $(INC)/
 
 .PHONY: debug
 debug:
 	$(eval DBG=-g)
 
-unittest: $(TODIR) $(ODIR)
-	gcc -o $(BIN)/$@ $^ -L$(DEST) -llist -lcunit -I $(DEST_INC)
+unittest: $(TOBJ) $(OBJ)
+	gcc -o $(BIN)/$@ $^ -L$(DEST)/$(LIB) -llist -lcunit -I $(DEST)/$(INC)
 
 debug_tests: debug unittest
 	$(BIN)/unittest
@@ -39,18 +38,22 @@ debug_tests: debug unittest
 run_tests: unittest
 	$(BIN)/$<
 
-static_lib: clean $(ODIR)
-	ar rcs $(LIB)/liblist.a $>
+static_lib: $(OBJ)
+	ar rcs $(LIB)/liblist.a $<
 
 install: static_lib
-	cp $(LIB)/liblist.a $(DEST)
-	cp $(INC)/list.h $(DEST_INC)
+	cp $(LIB)/liblist.a $(DEST)/$(LIB)
+	cp $(INC)/list.h $(DEST)/$(INC)
+
+test_install: install
+	gcc -o $(BIN)/listtest $(TDIR)/listtest.c -llist -I $(DEST)/include/ -L $(LD_LIBRARY_PATH)
+	$(BIN)/listtest
 
 .PHONY: uninstall
 uninstall: 
-	rm -f $(DEST)/liblist.a
-	rm -f $(DEST_INC)/list.h
+	rm -f $(DEST)/$(LIB)/liblist.a
+	rm -f $(DEST)/$(INC)/list.h
 
 .PHONY: clean
 clean: 
-	rm -f $(BIN)/* $(OBJ)/*.o $(TST_OBJ)/*
+	rm -f $(BIN)/* $(ODIR)/*.o $(TODIR)/*
