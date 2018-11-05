@@ -1,8 +1,6 @@
 SRC=src
 OBJ=obj
 LIB=lib
-# DEBUG= Set the environment variable with export command
-# export DEBUG=-g
 TST=test
 TST_OBJ=$(OBJ)/$(TST)
 OBJ_FILES=list_creation.o list_removal.o list_transformation.o
@@ -14,28 +12,35 @@ LD_LIBRARY_PATH=$(HOME)/.local/lib
 ODIR=$(patsubst %,$(OBJ)/%, $(OBJ_FILES))
 TODIR=$(patsubst %,$(TST_OBJ)/%, $(TST_OBJ_FILES))
 DEST=$(HOME)/.local/$(LIB)
-DEST_INC=$(HOME)/.local/$(LIB)
+DEST_INC=$(HOME)/.local/$(INC)
 
 all: clean $(ODIR)
 
 $(OBJ)/%.o: $(SRC)/%.c
-	gcc $(DEBUG) -c -o $@ $< -iquote $(INC)/ 
+	gcc $(DBG) -c -o $@ $< -iquote $(INC)/ 
 
 .PHONY: tree
 tree:
 	tree
 
 $(TST_OBJ)/%.o: $(TST)/%.c
-	gcc $(DEBUG) -c -o $@ $< -iquote $(INC)/
+	gcc $(DBG) -c -o $@ $< -iquote $(INC)/
+
+.PHONY: debug
+debug:
+	$(eval DBG=-g)
 
 unittest: $(TODIR) $(ODIR)
-	gcc -o $(BIN)/$@ $^ -L$(DEST) -llist -lcunit
+	gcc -o $(BIN)/$@ $^ -L$(DEST) -llist -lcunit -I $(DEST_INC)
+
+debug_tests: debug unittest
+	$(BIN)/unittest
 
 run_tests: unittest
 	$(BIN)/$<
 
-static_lib: $(ODIR)
-	ar rcs $(LIB)/liblist.a $^
+static_lib: clean $(ODIR)
+	ar rcs $(LIB)/liblist.a $>
 
 install: static_lib
 	cp $(LIB)/liblist.a $(DEST)
