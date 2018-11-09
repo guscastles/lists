@@ -6,7 +6,7 @@ INC=include
 BIN=bin
 LIB=lib
 TODIR=$(ODIR)/test
-_OBJ=list_creation.o list_removal.o list_transformation.o
+_OBJ=list_creation.o list_removal.o list_transformation.o list_retrieval.o
 _TOBJ=unittest.o test_list.o test_remove.o
 LD_LIBRARY_PATH=$(HOME)/.local/lib
 OBJ=$(patsubst %,$(ODIR)/%, $(_OBJ))
@@ -57,3 +57,6 @@ uninstall:
 .PHONY: clean
 clean: 
 	rm -f $(BIN)/* $(ODIR)/*.o $(TODIR)/*
+
+debug: unittest
+	gdb $(BIN)/$<

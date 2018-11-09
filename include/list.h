@@ -1,3 +1,5 @@
+#define OUT_OF_LIMITS(p, s) (p < 0 || p >= s)
+
 typedef struct arraylist {
    int *list;
    int size;

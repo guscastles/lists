@@ -4,23 +4,9 @@
 
 #define MAX_LIST_SIZE 1e9
 
-int _position_out_of_limits(int position, size_t size) {
-  return position < 0 || position >= size;
-}
-
 void update_list(List list, int new_value, int position) {
-   if (!_position_out_of_limits(position, list_size(list)))
+   if (!OUT_OF_LIMITS(position, list_size(list)))
       list.list[position] = new_value;
-}
-
-int element_at(List list, int position) {
-   if (_position_out_of_limits(position, list.size))
-      return INT_MIN;
-   return list.list[position];
-}
-
-int list_size(List list) {
-   return list.size;
 }
 
 List append_element(List list, int element) {
