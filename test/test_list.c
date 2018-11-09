@@ -42,5 +42,6 @@ void test_create_a_list_of_lists(void) {
    lists[0] = create_list(0);
    lists[0] = append_element(lists[0], 1);
    CU_ASSERT_EQUAL(list_size(lists[0]), 1);
+   free(lists);
 }
 
