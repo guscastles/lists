@@ -21,3 +21,6 @@ Provides functions for handling lists, with insertion, updates, and deletions.
 - static_lib: creates the *liblist.a* static library
 
 - debug: compiles the code for debugging
+
+## Project in RealtimeBoard
+As a personal preference, the project can be found on [RealtimeBoard](https://realtimeboard.com/app/board/o9J_kyuv_FM=/), so giving collaboration and visibility a chance :)
