@@ -25,10 +25,6 @@ tree:
 $(TODIR)/%.o: $(TDIR)/%.c
 	gcc $(DBG) -c -o $@ $< -iquote $(INC)/
 
-.PHONY: debug
-debug:
-	$(eval DBG=-g)
-
 unittest: $(TOBJ) $(OBJ)
 	gcc -o $(BIN)/$@ $^ -L$(DEST)/$(LIB) -llist -lcunit -I $(DEST)/$(INC)
 
@@ -59,4 +55,5 @@ clean:
 	rm -f $(BIN)/* $(ODIR)/*.o $(TODIR)/*
 
 debug: unittest
+	$(eval DBG=-g)
 	gdb $(BIN)/$<

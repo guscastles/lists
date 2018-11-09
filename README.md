@@ -20,3 +20,4 @@ Provides functions for handling lists, with insertion, updates, and deletions.
 
 - static_lib: creates the *liblist.a* static library
 
+- debug: compiles the code for debugging
