@@ -1,0 +1,85 @@
+# ./test/listtest.c
+1c1
+<    List list = create_list(list_size);
+---
+>    List list = make_list(list_size);
+# ./test/test_list.c
+2c2
+< void test_create_empty_list(void) {
+---
+> void test_make_empty_list(void) {
+# ./test/test_list.c
+3c3
+<    List list = create_list(0);
+---
+>    List list = make_list(0);
+# ./test/test_list.c
+4c4
+< void test_create_a_list(void) {
+---
+> void test_make_a_list(void) {
+# ./test/test_list.c
+5c5
+<    List list = create_list(size);
+---
+>    List list = make_list(size);
+# ./test/test_list.c
+6c6
+<    List list = create_list(0);
+---
+>    List list = make_list(0);
+# ./test/test_list.c
+7c7
+<    List list = create_list(2);
+---
+>    List list = make_list(2);
+# ./test/test_list.c
+8c8
+< void test_create_a_list_of_lists(void) {
+---
+> void test_make_a_list_of_lists(void) {
+# ./test/test_list.c
+9c9
+<    lists[0] = create_list(0);
+---
+>    lists[0] = make_list(0);
+# ./test/test_list_object.c
+10c10
+< void test_create_empty_list(void) {
+---
+> void test_make_empty_list(void) {
+# ./test/test_list_object.c
+11c11
+<    List list = create_list(0);
+---
+>    List list = make_list(0);
+# Binary file ./build/CMakeFiles/list.dir/src/list_creation.c.o matches
+12c12
+< Binary file ./build/CMakeFiles/list.dir/src/list_creation.c.o matches
+---
+> Binary file ./build/CMakeFiles/list.dir/src/list_creation.c.o matches
+# Binary file ./build/CMakeFiles/list.dir/src/list_removal.c.o matches
+13c13
+< Binary file ./build/CMakeFiles/list.dir/src/list_removal.c.o matches
+---
+> Binary file ./build/CMakeFiles/list.dir/src/list_removal.c.o matches
+# Binary file ./build/CMakeFiles/lists.dir/src/lists.c.o matches
+14c14
+< Binary file ./build/CMakeFiles/lists.dir/src/lists.c.o matches
+---
+> Binary file ./build/CMakeFiles/lists.dir/src/lists.c.o matches
+# ./src/list_removal.c
+15c15
+<    List new_list = create_list(current_size - 1);
+---
+>    List new_list = make_list(current_size - 1);
+# ./src/lists.c
+16c16
+<     List list = create_list(3);
+---
+>     List list = make_list(3);
+# ./src/list_creation.c
+17c17
+< List create_list(int size) {
+---
+> List make_list(int size) {
