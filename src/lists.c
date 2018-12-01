@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../include/list.h"
+#include "list.h"
 
 int main() {
     List list = create_list(3);
