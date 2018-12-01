@@ -1,6 +1,6 @@
-#include "../include/list.h"
 #include <malloc.h>
 #include <limits.h>
+#include "list.h"
 
 #define MAX_LIST_SIZE 1e9
 

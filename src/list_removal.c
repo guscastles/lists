@@ -1,6 +1,6 @@
-#include "../include/list.h"
 #include <malloc.h>
 #include <limits.h>
+#include "list.h"
 
 List remove_element(List list, int position) {
    int current_size = list_size(list);

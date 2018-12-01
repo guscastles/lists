@@ -1,6 +1,6 @@
-#include "../include/list.h"
 #include <malloc.h>
 #include <limits.h>
+#include "list.h"
 
 List create_list(int size) {
    int *array = malloc(size * sizeof(int));

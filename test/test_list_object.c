@@ -5,15 +5,14 @@
 #include <stdio.h>
 #include "list.h"
 
-strutct list_object {
-  List (*push)(List l, int, element);
+struct list_object {
+  List (*push)(List l, int element);
   Tuple (*pop)(List l);
 
 } LIST;
 
-void test_create_empty_list(void) {
+void test_create_list_with_zero_elements(void) {
    List list = create_list(0);
-   
    CU_ASSERT_EQUAL(list.size, 0);
 }
 
